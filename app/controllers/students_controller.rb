@@ -21,10 +21,16 @@ class StudentsController < ApplicationController
   end
 
   def index
-    @students = Student.all
+    @students = Student.all(query_params)
+    render 'index'
   end
 
   def student_params
     params.require(:student).permit(:name, :birthday, :hometown)
+  end
+
+  def query_params
+    query_params = params[:query]
+      #query_params ? query_params.permit(:name, :birthday, :hometown)
   end
 end
